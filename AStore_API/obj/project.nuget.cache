@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "IxB+E9hvM6Y=",
+  "dgSpecHash": "1omf2gRp3z0=",
   "success": true,
-  "projectFilePath": "D:\\WorkSpace\\HocKi_7\\AStore_API\\AStore_API.csproj",
+  "projectFilePath": "D:\\WorkSpace\\HocKi_7\\Web_API\\AStore_API\\AStore_API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\VanKhanh\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\VanKhanh\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

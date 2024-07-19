@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\WorkSpace\\HocKi_7\\AStore_API\\AStore_API.csproj": {}
+    "D:\\WorkSpace\\HocKi_7\\Web_API\\AStore_API\\AStore_API.csproj": {}
   },
   "projects": {
-    "D:\\WorkSpace\\HocKi_7\\AStore_API\\AStore_API.csproj": {
+    "D:\\WorkSpace\\HocKi_7\\Web_API\\AStore_API\\AStore_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\WorkSpace\\HocKi_7\\AStore_API\\AStore_API.csproj",
+        "projectUniqueName": "D:\\WorkSpace\\HocKi_7\\Web_API\\AStore_API\\AStore_API.csproj",
         "projectName": "AStore_API",
-        "projectPath": "D:\\WorkSpace\\HocKi_7\\AStore_API\\AStore_API.csproj",
+        "projectPath": "D:\\WorkSpace\\HocKi_7\\Web_API\\AStore_API\\AStore_API.csproj",
         "packagesPath": "C:\\Users\\VanKhanh\\.nuget\\packages\\",
-        "outputPath": "D:\\WorkSpace\\HocKi_7\\AStore_API\\obj\\",
+        "outputPath": "D:\\WorkSpace\\HocKi_7\\Web_API\\AStore_API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\VanKhanh\\AppData\\Roaming\\NuGet\\NuGet.Config",
