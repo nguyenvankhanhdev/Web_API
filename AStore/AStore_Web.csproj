@@ -25,8 +25,30 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\BackEnd\" />
     <Folder Include="Controllers\FrontEnd\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\asset\frontend\fonts\lg.woff2" />
+    <None Include="wwwroot\asset\frontend\fonts\Roboto-Black.woff2" />
+    <None Include="wwwroot\asset\frontend\fonts\Roboto-Bold.woff2" />
+    <None Include="wwwroot\asset\frontend\fonts\Roboto-Light.woff2" />
+    <None Include="wwwroot\asset\frontend\fonts\Roboto-Medium.woff2" />
+    <None Include="wwwroot\asset\frontend\fonts\Roboto-Regular.woff2" />
+    <None Include="wwwroot\asset\frontend\fonts\Roboto-Thin.woff2" />
+    <None Include="wwwroot\asset\frontend\fonts\SVN-Gotham.woff2" />
+    <None Include="wwwroot\asset\frontend\fonts\SVN-GothamBlack.woff2" />
+    <None Include="wwwroot\asset\frontend\fonts\SVN-GothamBlackItalic.woff2" />
+    <None Include="wwwroot\asset\frontend\fonts\SVN-GothamBold.woff2" />
+    <None Include="wwwroot\asset\frontend\fonts\SVN-GothamBoldItalic.woff2" />
+    <None Include="wwwroot\asset\frontend\fonts\SVN-GothamBold_1.woff2" />
+    <None Include="wwwroot\asset\frontend\fonts\SVN-GothamBookItalic.woff2" />
+    <None Include="wwwroot\asset\frontend\fonts\SVN-GothamItalic.woff2" />
+    <None Include="wwwroot\asset\frontend\fonts\SVN-GothamLight.woff2" />
+    <None Include="wwwroot\asset\frontend\fonts\SVN-GothamLightItalic.woff2" />
+    <None Include="wwwroot\asset\frontend\fonts\SVN-GothamLight_1.woff2" />
+    <None Include="wwwroot\asset\frontend\fonts\SVN-GothamThin.woff2" />
+    <None Include="wwwroot\asset\frontend\fonts\SVN-GothamThinItalic.woff2" />
   </ItemGroup>
 
 </Project>
