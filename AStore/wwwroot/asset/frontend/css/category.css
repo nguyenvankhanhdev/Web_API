@@ -7392,7 +7392,7 @@ hr {
 
 .product-list {
     display: flex;
-    background: #212529;
+    /*background: #212529;*/
     flex-wrap: wrap;
     position: relative
 }
@@ -7990,7 +7990,7 @@ main {
 }
 
 .category {
-    background: #212529;
+   /* background: #212529;*/
     padding-bottom: 48px
 }
 
@@ -8022,7 +8022,7 @@ main {
 
 .category .actions {
     padding: 24px 24px 8px;
-    background-color: #212529;
+    /*background-color: #212529;*/
     padding-bottom: 20px;
 }
 

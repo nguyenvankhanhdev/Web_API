@@ -22,10 +22,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\FrontEnd\" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -49,6 +46,10 @@
     <None Include="wwwroot\asset\frontend\fonts\SVN-GothamLight_1.woff2" />
     <None Include="wwwroot\asset\frontend\fonts\SVN-GothamThin.woff2" />
     <None Include="wwwroot\asset\frontend\fonts\SVN-GothamThinItalic.woff2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AStore_Library\AStore_Library.csproj" />
   </ItemGroup>
 
 </Project>

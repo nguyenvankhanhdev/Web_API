@@ -37,21 +37,22 @@ namespace AStore_API.Controllers
 			}
 			return _response;
 		}
-		[HttpGet("{id:int}", Name ="GetCart")]
+		[HttpGet("{id:int}", Name = "GetCart")]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		[ProducesResponseType(StatusCodes.Status200OK)]
-		public async Task<ActionResult<APIResponse>> GetCart(User user)
+		public async Task<ActionResult<APIResponse>> GetCart(int id, [FromQuery] int userId)
 		{
 			try
 			{
-				if (user.Id == 0)
+				if (id == 0 || userId == 0)
 				{
 					_response.IsSuccess = false;
 					_response.StatusCode = HttpStatusCode.BadRequest;
 					return BadRequest(_response);
 				}
-				var cart = await _cart.GetAsync(v => v.User_id == user.Id);
+
+				var cart = await _cart.GetAsync(v => v.User_id == userId && v.Id == id);
 				if (cart == null)
 				{
 					_response.StatusCode = HttpStatusCode.NotFound;
@@ -65,9 +66,9 @@ namespace AStore_API.Controllers
 			catch (Exception ex)
 			{
 				_response.IsSuccess = false;
-				_response.ErrorMessages = new List<string>() { ex.ToString() };
+				_response.ErrorMessages = new List<string> { ex.ToString() };
+				return StatusCode(StatusCodes.Status500InternalServerError, _response);
 			}
-			return _response;
 		}
 		[HttpPost]
 		[ProducesResponseType(StatusCodes.Status201Created)]
@@ -78,7 +79,7 @@ namespace AStore_API.Controllers
 		{
 			try
 			{
-				if(entity == null)
+				if (entity == null)
 				{
 					_response.StatusCode = HttpStatusCode.BadRequest;
 					_response.IsSuccess = false;
@@ -129,7 +130,41 @@ namespace AStore_API.Controllers
 			{
 				_response.IsSuccess = false;
 				_response.ErrorMessages = new List<string> { ex.ToString() };
-				return StatusCode(StatusCodes.Status500InternalServerError, _response); 
+				return StatusCode(StatusCodes.Status500InternalServerError, _response);
+			}
+		}
+		[HttpDelete("{id:int}", Name = "DeleteCart")]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		[ProducesResponseType(StatusCodes.Status404NotFound)]
+		[ProducesResponseType(StatusCodes.Status204NoContent)]
+		public async Task<ActionResult<APIResponse>> DeleteCart(int id, [FromQuery] int userId, [FromQuery] int productId)
+		{
+			try
+			{
+				if (id == 0 || userId == 0 || productId == 0)
+				{
+					_response.IsSuccess = false;
+					_response.StatusCode = HttpStatusCode.BadRequest;
+					return BadRequest(_response);
+				}
+
+				var cart = await _cart.GetAsync(v => v.User_id == userId && v.Id == id && v.Product_id == productId);
+				if (cart == null)
+				{
+					_response.StatusCode = HttpStatusCode.NotFound;
+					return NotFound(_response);
+				}
+
+				await _cart.RemoveAsync(cart);
+				_response.StatusCode = HttpStatusCode.NoContent;
+				_response.IsSuccess = true;
+				return Ok(_response);
+			}
+			catch (Exception ex)
+			{
+				_response.IsSuccess = false;
+				_response.ErrorMessages = new List<string> { ex.ToString() };
+				return StatusCode(StatusCodes.Status500InternalServerError, _response);
 			}
 		}
 

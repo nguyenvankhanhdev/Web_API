@@ -155,3 +155,4 @@ D:\WorkSpace\HocKi_7\Web_API\AStore_API\obj\Debug\net7.0\refint\AStore_API.dll
 D:\WorkSpace\HocKi_7\Web_API\AStore_API\obj\Debug\net7.0\AStore_API.pdb
 D:\WorkSpace\HocKi_7\Web_API\AStore_API\obj\Debug\net7.0\AStore_API.genruntimeconfig.cache
 D:\WorkSpace\HocKi_7\Web_API\AStore_API\obj\Debug\net7.0\ref\AStore_API.dll
+D:\WorkSpace\HocKi_7\Web_API\AStore_API\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

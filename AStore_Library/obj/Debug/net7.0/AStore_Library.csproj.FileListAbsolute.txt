@@ -1,0 +1,12 @@
+D:\WorkSpace\HocKi_7\Web_API\AStore_Library\bin\Debug\net7.0\AStore_Library.deps.json
+D:\WorkSpace\HocKi_7\Web_API\AStore_Library\bin\Debug\net7.0\AStore_Library.dll
+D:\WorkSpace\HocKi_7\Web_API\AStore_Library\bin\Debug\net7.0\AStore_Library.pdb
+D:\WorkSpace\HocKi_7\Web_API\AStore_Library\obj\Debug\net7.0\AStore_Library.GeneratedMSBuildEditorConfig.editorconfig
+D:\WorkSpace\HocKi_7\Web_API\AStore_Library\obj\Debug\net7.0\AStore_Library.AssemblyInfoInputs.cache
+D:\WorkSpace\HocKi_7\Web_API\AStore_Library\obj\Debug\net7.0\AStore_Library.AssemblyInfo.cs
+D:\WorkSpace\HocKi_7\Web_API\AStore_Library\obj\Debug\net7.0\AStore_Library.csproj.CoreCompileInputs.cache
+D:\WorkSpace\HocKi_7\Web_API\AStore_Library\obj\Debug\net7.0\AStore_Library.sourcelink.json
+D:\WorkSpace\HocKi_7\Web_API\AStore_Library\obj\Debug\net7.0\AStore_Library.dll
+D:\WorkSpace\HocKi_7\Web_API\AStore_Library\obj\Debug\net7.0\refint\AStore_Library.dll
+D:\WorkSpace\HocKi_7\Web_API\AStore_Library\obj\Debug\net7.0\AStore_Library.pdb
+D:\WorkSpace\HocKi_7\Web_API\AStore_Library\obj\Debug\net7.0\ref\AStore_Library.dll

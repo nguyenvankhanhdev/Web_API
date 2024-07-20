@@ -6,7 +6,7 @@ using System.Net;
 
 namespace AStore_API.Controllers
 {
-	[Route("api/[controller]")]
+	[Route("api/product")]
 	[ApiController]
 	public class ProductController : ControllerBase
 	{
