@@ -25,6 +25,7 @@ namespace AStore_API.Controllers
 			{
 				IEnumerable<Category> cates = await _cate.GetAllAsync();
 				_response.Result = cates;
+				_response.IsSuccess = true;
 				_response.StatusCode = HttpStatusCode.OK;
 				return Ok(_response);
 			}
@@ -55,6 +56,7 @@ namespace AStore_API.Controllers
 					return NotFound(_response);
 				}
 				_response.Result = Cate;
+				_response.IsSuccess = true;
 				_response.StatusCode = HttpStatusCode.OK;
 				return Ok(_response);
 			}
@@ -85,6 +87,8 @@ namespace AStore_API.Controllers
 				}
 				await _cate.CreateAsync(cate);
 				_response.Result = cate;
+
+				_response.IsSuccess = true;
 				_response.StatusCode = HttpStatusCode.Created;
 				return CreatedAtRoute("GetCategory", new { id = cate.Id }, _response);
 			}

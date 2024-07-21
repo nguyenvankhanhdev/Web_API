@@ -27,6 +27,7 @@ namespace AStore_API.Controllers
 			{
 				IEnumerable<Product> products = await _product.GetAllAsync(includeProperties:"Category");
 				_reponse.Result = products;
+				_reponse.IsSuccess = true;
 				_reponse.StatusCode = HttpStatusCode.OK;
 				return Ok(_reponse);
 			}
@@ -58,6 +59,7 @@ namespace AStore_API.Controllers
 					return NotFound(_reponse);
 				}
 				_reponse.Result = product;
+				_reponse.IsSuccess = true;
 				_reponse.StatusCode = HttpStatusCode.OK;
 				return Ok(_reponse);
 			}
@@ -92,6 +94,7 @@ namespace AStore_API.Controllers
 				}
 				await _product.CreateAsync(product);
 				_reponse.Result = product;
+				_reponse.IsSuccess = true;
 				_reponse.StatusCode = HttpStatusCode.Created;
 				return CreatedAtRoute("GetProduct", new { id = product.Id }, _reponse);
 			}
@@ -141,7 +144,6 @@ namespace AStore_API.Controllers
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
-
 		public async Task<ActionResult<APIResponse>> UpdateProduct(int id, [FromBody] Product pro)
 		{
 			try
@@ -160,7 +162,44 @@ namespace AStore_API.Controllers
 			}
 			return _reponse;
 		}
-
+		// viết 1 hàm để upload image 
+		[HttpPost("upload")]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+		public async Task<ActionResult<APIResponse>> UploadImage()
+        {
+            try
+            {
+                var file = Request.Form.Files[0];
+                if (file.Length > 0)
+                {
+                    string fileName = Guid.NewGuid().ToString();
+                    var extension = Path.GetExtension(file.FileName);
+                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/asset/frontend/img", fileName + extension);
+                    using (var stream = new FileStream(path, FileMode.Create))
+                    {
+                        file.CopyTo(stream);
+                    }
+                    _reponse.Result = fileName + extension;
+                    _reponse.IsSuccess = true;
+                    _reponse.StatusCode = HttpStatusCode.OK;
+                    return Ok(_reponse);
+                }
+                else
+                {
+                    _reponse.IsSuccess = false;
+                    _reponse.ErrorMessages = new List<string>() { "File is empty" };
+                    return BadRequest(_reponse);
+                }
+            }
+            catch (Exception ex)
+            {
+                _reponse.IsSuccess = false;
+                _reponse.ErrorMessages = new List<string>() { ex.ToString() };
+            }
+            return _reponse;
+        }
 
 
 

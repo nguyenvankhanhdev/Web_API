@@ -9,10 +9,13 @@ namespace AStore_Web.Models.VM.Product
     {
         public ProductCreateVM()
         {
-            pro_id = new AStore_Web.Models.Product();
+            pro_id = new Models.Product();
         }
-        public Models.Product pro_id { get; set; }
 
+        [ValidateNever]
+        public Models.Product pro_id { get; set; }
+        [ValidateNever]
+        public IFormFile ImageVM { get; set; }
         [ValidateNever]
         public IEnumerable<SelectListItem> CategoryList { get; set; }
     }
