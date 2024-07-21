@@ -1,0 +1,81 @@
+﻿@model AStore_Web.Models.VM.Product.ProductCreateVM
+
+<section class="section">
+	<div class="section-header">
+		<h1>Product</h1>
+	</div>
+	<div class="section-body">
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-header">
+						<h4>Create Product</h4>
+					</div>
+					<div class="card-body">
+						<form method="POST" asp-action="Create" enctype="multipart/form-data">
+							
+							<div class="form-group">
+								<label>Image</label>
+								<input type="file" asp-for="pro_id.Image"  class="form-control" name="image">
+							</div>
+
+							<div class="form-group">
+								<label>Name</label>
+								<input type="text" class="form-control" asp-for="pro_id.Name" name="name" value="">
+							</div>
+
+							<div class="row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="inputState">Category</label>
+										<select id="inputState" class="form-control main-category" 
+										asp-for="pro_id.CategoryId" asp-items="@Model.CategoryList" name="category">
+											<option disabled selected>--Select Category--</option>
+										</select>
+										<span asp-validation-for="pro_id.CategoryId" class="text-danger"></span>
+									</div>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label>Price</label>
+								<input type="text" asp-for="pro_id.Price" class="form-control" name="price" value="">
+							</div>
+
+							<div class="form-group">
+								<label>Offer Price</label>
+								<input type="text" class="form-control" asp-for="pro_id.Offer_price" name="offer_price" value="{{old('offer_price')}}">
+							</div>
+							<div class="form-group">
+								<label>Description</label>
+								<textarea name="long_description" asp-for="pro_id.Description" class="form-control summernote"></textarea>
+							</div>
+
+							<div class="form-group">
+								<label for="inputState">Product Type</label>
+								<select id="inputState" class="form-control" name="product_type">
+									<option value="">Select</option>
+									<option value="new_arrival">New Arrival</option>
+									<option value="featured_product">Featured</option>
+									<option value="top_product">Top Product</option>
+									<option value="best_product">Best Product</option>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<label for="inputState">Status</label>
+								<select id="inputState" class="form-control" name="status">
+									<option value="1">Active</option>
+									<option value="0">Inactive</option>
+								</select>
+							</div>
+							<button type="submmit" class="btn btn-primary">Create</button>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>

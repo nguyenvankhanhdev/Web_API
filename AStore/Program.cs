@@ -9,6 +9,11 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient<IProductService, ProductService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 
+
+builder.Services.AddHttpClient<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+
+
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 
@@ -33,6 +38,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
 	name: "default",
-	pattern: "{controller=Product}/{action=Index}/{id?}");
+	pattern: "{controller=ProductAdmin}/{action=Index}/{id?}");
 
 app.Run();

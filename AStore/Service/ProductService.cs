@@ -48,12 +48,21 @@ namespace AStore_Web.Service
 		
 		public Task<T> GetProductByIdAsync<T>(int id)
 		{
-			throw new NotImplementedException();
+			return SendAsync<T>(new APIRequest
+			{
+				apiType = SD.APIType.GET,
+				Url = ApiBaseUrl + "/api/product/" + id
+			});
 		}
 
 		public Task<T> UpdateProductAsync<T>(int id, Product product)
 		{
-			throw new NotImplementedException();
+			return SendAsync<T>(new APIRequest
+			{
+				apiType = SD.APIType.PUT,
+				Url = ApiBaseUrl + "/api/product/" + id,
+				Data = product
+			});
 		}
 	}
 }

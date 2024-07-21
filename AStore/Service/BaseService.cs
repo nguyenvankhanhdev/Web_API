@@ -62,7 +62,7 @@ namespace AStore_Web.Service
 				try
 				{
 					APIResponse APIResponse = JsonConvert.DeserializeObject<APIResponse>(apiContent);
-					if ( apiResponse.StatusCode == HttpStatusCode.BadRequest ||
+					if (apiResponse.StatusCode == HttpStatusCode.BadRequest ||
 						apiResponse.StatusCode == HttpStatusCode.NotFound)
 					{
 						APIResponse.StatusCode = HttpStatusCode.BadRequest;
