@@ -50,7 +50,7 @@
 
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea asp-for="pro_id.Description" class="form-control summernote"></textarea>
+                                <textarea asp-for="pro_id.Description" class="form-control"></textarea>
                                 <span asp-validation-for="pro_id.Description" class="text-danger"></span>
                             </div>
 
@@ -76,8 +76,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Image</label>
-                                <input type="file" id="image" class="form-control">
-                                <input type="hidden" id="imagePath" asp-for="ImageVM">
+                                <input type="file" id="image" class="form-control" asp-for="ImageVM">
                                 <span asp-validation-for="ImageVM" class="text-danger"></span>
                             </div>
                             <button type="submit" class="btn btn-primary">Create</button>
@@ -113,12 +112,8 @@
                 const nameValue = nameInput.value;
                 slugInput.value = generateSlug(nameValue);
             });
-
-            // imageInput.addEventListener('input', function () {
-            // 	const imageValue = image.value;
-            // 	imageInput.value = imageValue;
-            // });
         });
+
 
 
     </script>

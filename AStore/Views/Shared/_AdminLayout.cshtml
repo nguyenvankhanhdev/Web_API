@@ -166,14 +166,15 @@
 							type: 'DELETE',
 							url: deleteUrl,
 							success: function (data) {
-
 								if (data.status == 'success') {
 									Swal.fire(
 										'Deleted!',
 										data.message,
 										'success'
 									)
-									window.location.reload();
+									setTimeout(function () {
+										window.location.reload();
+									}, 1000);
 								} else if (data.status == 'error') {
 									Swal.fire(
 										'Cant Delete',

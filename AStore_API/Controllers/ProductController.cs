@@ -1,6 +1,5 @@
 ﻿using AStore_API.Models;
 using AStore_API.Repository.IRepository;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -10,13 +9,13 @@ namespace AStore_API.Controllers
 	[ApiController]
 	public class ProductController : ControllerBase
 	{
-		protected APIResponse _reponse;
+		protected APIResponse _response;
 		private readonly IProductRepository _product;
 		private readonly ICategoryRepository _category;
 		public ProductController(IProductRepository product, ICategoryRepository category)
 		{
 			_product = product;
-			this._reponse = new APIResponse();
+			this._response = new APIResponse();
 			_category = category;
 		}
 		[HttpGet]
@@ -26,17 +25,17 @@ namespace AStore_API.Controllers
 			try
 			{
 				IEnumerable<Product> products = await _product.GetAllAsync(includeProperties:"Category");
-				_reponse.Result = products;
-				_reponse.IsSuccess = true;
-				_reponse.StatusCode = HttpStatusCode.OK;
-				return Ok(_reponse);
+				_response.Result = products;
+				_response.IsSuccess = true;
+				_response.StatusCode = HttpStatusCode.OK;
+				return Ok(_response);
 			}
 			catch (Exception ex)
 			{
-				_reponse.IsSuccess = false;
-				_reponse.ErrorMessages = new List<string>() { ex.ToString() };
+				_response.IsSuccess = false;
+				_response.ErrorMessages = new List<string>() { ex.ToString() };
 			}
-			return _reponse;
+			return _response;
 		}
 		[HttpGet("{id:int}", Name = "GetProduct")]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]	
@@ -48,27 +47,27 @@ namespace AStore_API.Controllers
 			{
 				if (id == 0)
 				{
-					_reponse.IsSuccess = false;
-					_reponse.ErrorMessages = new List<string>() { "Invalid Product ID" };
-					return BadRequest(_reponse);
+					_response.IsSuccess = false;
+					_response.ErrorMessages = new List<string>() { "Invalid Product ID" };
+					return BadRequest(_response);
 				}
 				var product = await _product.GetAsync(v => v.Id == id);
 				if (product == null)
 				{
-					_reponse.StatusCode = HttpStatusCode.NotFound;
-					return NotFound(_reponse);
+					_response.StatusCode = HttpStatusCode.NotFound;
+					return NotFound(_response);
 				}
-				_reponse.Result = product;
-				_reponse.IsSuccess = true;
-				_reponse.StatusCode = HttpStatusCode.OK;
-				return Ok(_reponse);
+				_response.Result = product;
+				_response.IsSuccess = true;
+				_response.StatusCode = HttpStatusCode.OK;
+				return Ok(_response);
 			}
 			catch (Exception ex)
 			{
-				_reponse.IsSuccess = false;
-				_reponse.ErrorMessages = new List<string>() { ex.ToString() };
+				_response.IsSuccess = false;
+				_response.ErrorMessages = new List<string>() { ex.ToString() };
 			}
-			return _reponse;
+			return _response;
 		}
 		[HttpPost]
 		[ProducesResponseType(StatusCodes.Status201Created)]
@@ -93,17 +92,17 @@ namespace AStore_API.Controllers
 					return BadRequest(ModelState);
 				}
 				await _product.CreateAsync(product);
-				_reponse.Result = product;
-				_reponse.IsSuccess = true;
-				_reponse.StatusCode = HttpStatusCode.Created;
-				return CreatedAtRoute("GetProduct", new { id = product.Id }, _reponse);
+				_response.Result = product;
+				_response.IsSuccess = true;
+				_response.StatusCode = HttpStatusCode.Created;
+				return CreatedAtRoute("GetProduct", new { id = product.Id }, _response);
 			}
 			catch (Exception ex)
 			{
-				_reponse.IsSuccess = false;
-				_reponse.ErrorMessages = new List<string>() { ex.ToString() };
+				_response.IsSuccess = false;
+				_response.ErrorMessages = new List<string>() { ex.ToString() };
 			}
-			return _reponse;
+			return _response;
 
 		}
 
@@ -123,22 +122,22 @@ namespace AStore_API.Controllers
 				var product = await _product.GetAsync(v => v.Id == id);
 				if (product == null)
 				{
-					_reponse.StatusCode = HttpStatusCode.NotFound;
-					return NotFound(_reponse);
+					_response.StatusCode = HttpStatusCode.NotFound;
+					return NotFound(_response);
 				
 				}
 				await _product.RemoveAsync(product);
-				_reponse.StatusCode = HttpStatusCode.NoContent;
-				_reponse.IsSuccess = true;
-				return Ok(_reponse);
+				_response.StatusCode = HttpStatusCode.NoContent;
+				_response.IsSuccess = true;
+				return Ok(_response);
 
 			}
 			catch (Exception ex)
 			{
-				_reponse.IsSuccess = false;
-				_reponse.ErrorMessages = new List<string>() { ex.ToString() };
+				_response.IsSuccess = false;
+				_response.ErrorMessages = new List<string>() { ex.ToString() };
 			}
-			return _reponse;
+			return _response;
 		}
 		[HttpPut("{id:int}", Name = "UpdateProduct")]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -150,58 +149,68 @@ namespace AStore_API.Controllers
 			{
 				if (id == 0 || pro.Id != id || pro == null)
 				{
-					_reponse.StatusCode = HttpStatusCode.BadRequest;
-					return BadRequest(_reponse);
+					_response.StatusCode = HttpStatusCode.BadRequest;
+					return BadRequest(_response);
 				}
-
+				var product = await _product.GetAsync(v => v.Id == id);
+				if (product == null)
+				{
+					_response.StatusCode = HttpStatusCode.NotFound;
+					return NotFound(_response);
+				}
+				await _product.UpdateAsync(pro);
+				_response.StatusCode = HttpStatusCode.NoContent;
+				_response.IsSuccess = true;
+				return NoContent();
 			}
 			catch (Exception ex)
 			{
-				_reponse.IsSuccess = false;
-				_reponse.ErrorMessages = new List<string>() { ex.ToString() };
+				_response.IsSuccess = false;
+				_response.ErrorMessages = new List<string>() { ex.ToString() };
 			}
-			return _reponse;
+			return _response;
 		}
-		// viết 1 hàm để upload image 
-		[HttpPost("upload")]
-		[ProducesResponseType(StatusCodes.Status200OK)]
+		[HttpPut("{id:int}/status", Name = "UpdateStatus")]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
-		public async Task<ActionResult<APIResponse>> UploadImage()
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<ActionResult<APIResponse>> ChangeStatus(int id, [FromBody] Product product)
         {
             try
             {
-                var file = Request.Form.Files[0];
-                if (file.Length > 0)
+                if (id == 0 || product.Id != id)
                 {
-                    string fileName = Guid.NewGuid().ToString();
-                    var extension = Path.GetExtension(file.FileName);
-                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/asset/frontend/img", fileName + extension);
-                    using (var stream = new FileStream(path, FileMode.Create))
-                    {
-                        file.CopyTo(stream);
-                    }
-                    _reponse.Result = fileName + extension;
-                    _reponse.IsSuccess = true;
-                    _reponse.StatusCode = HttpStatusCode.OK;
-                    return Ok(_reponse);
+                    _response.StatusCode = HttpStatusCode.BadRequest;
+                    _response.IsSuccess = false;
+
+                    return BadRequest(_response);
                 }
-                else
+                var pro = await _product.GetAsync(v => v.Id == id);
+                if (pro == null)
                 {
-                    _reponse.IsSuccess = false;
-                    _reponse.ErrorMessages = new List<string>() { "File is empty" };
-                    return BadRequest(_reponse);
+                    _response.StatusCode = HttpStatusCode.NotFound;
+                    _response.IsSuccess = false;
+                    _response.ErrorMessages = new List<string> { "Product not found." };
+                    return NotFound(_response);
                 }
+
+                pro.Status = product.Status;
+                await _product.UpdateAsync(pro);
+
+                _response.StatusCode = HttpStatusCode.NoContent;
+                _response.IsSuccess = true;
+                return NoContent();
             }
             catch (Exception ex)
             {
-                _reponse.IsSuccess = false;
-                _reponse.ErrorMessages = new List<string>() { ex.ToString() };
+                _response.IsSuccess = false;
+                _response.ErrorMessages = new List<string> { ex.Message };
+                
             }
-            return _reponse;
+			return _response;
         }
 
 
 
-	}
+    }
 }

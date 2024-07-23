@@ -9,7 +9,8 @@ namespace AStore_API.Models
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int Id { get; set; }
 		public string Name { get; set; }
-		public string Description { get; set; }
+        // tôi muốn Description được phép null thì sao
+        public string Description { get; set; }
 		public decimal Price { get; set; }
 		public decimal Offer_price { get; set; }
 		public string Image { get; set; }

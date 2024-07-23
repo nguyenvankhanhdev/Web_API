@@ -64,5 +64,15 @@ namespace AStore_Web.Service
 				Data = product
 			});
 		}
+		public Task<T> ChangeStatus<T> (int id, Product product)
+		{
+			return SendAsync<T>(new APIRequest
+			{
+				apiType = SD.APIType.PUT,
+				Url = ApiBaseUrl + "/api/product/" + id + "/status",
+				Data = product
+			});
+		}
+
 	}
 }

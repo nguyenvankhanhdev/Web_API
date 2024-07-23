@@ -9,5 +9,8 @@ namespace AStore_Web.Service.IService
 		Task<T> CreateProductAsync<T>(Product product);
 		Task<T> UpdateProductAsync<T>(int id, Product product);
 		Task<T> DeleteProductAsync<T>(int id);
+		Task<T> ChangeStatus<T>(int id, Product product);
+
+
 	}
 }
