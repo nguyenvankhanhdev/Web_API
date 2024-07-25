@@ -73,6 +73,7 @@ namespace AStore_Web.Service
 				Data = product
 			});
 		}
+		
 
 	}
 }

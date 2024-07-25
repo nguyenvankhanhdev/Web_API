@@ -13,7 +13,6 @@ namespace AStore_Web.Controllers
             _product = product;
 
         }
-
         public async Task<ActionResult> Index()
         {
             List<Product> listProduct = new();

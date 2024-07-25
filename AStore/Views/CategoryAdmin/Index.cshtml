@@ -35,7 +35,7 @@
                                             @(cate.Status == 1 ? "checked" : "") />
                                         </td>
                                         <td>
-                                            <a href="@Url.Action("Edit", "CategoryAdmin", new { id = cate.Id })" class="btn btn-warning"><i class="far fa-edit"></i>Edit</a>
+                                            <a href="javascript:void(0);" id="updateCate" data-id="@cate.Id" class="btn btn-warning"><i class="far fa-edit"></i>Edit</a>
                                             <a href="@Url.Action("Delete", "CategoryAdmin", new { id = cate.Id })" class="btn btn-danger delete-item"><i class="far fa-trash-alt"></i>Delete</a>
                                         </td>
                                     </tr>
@@ -48,3 +48,32 @@
         </div>
     </div>
 </section>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+
+            $(body).on('click', '#updateCate', function(e){
+                e.preventDefault();
+                let id = $(this).data('id');
+                $.ajax({
+                    url: '@Url.Action("Edit","CategoryAdmin")/' + id,
+                    method: 'PUT',
+                    success: function (data) {
+                        toastr.success('Update Successful!');
+                    },
+                    error: function (xhr, status, error) {
+                        toastr.success('Update Failed!');
+                    }
+
+
+                })
+            })
+
+
+        });
+
+
+    </script>
+
+}

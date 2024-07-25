@@ -158,10 +158,11 @@ namespace AStore_API.Controllers
 					_response.StatusCode = HttpStatusCode.NotFound;
 					return NotFound(_response);
 				}
+				_product.Detach(product);
 				await _product.UpdateAsync(pro);
 				_response.StatusCode = HttpStatusCode.NoContent;
 				_response.IsSuccess = true;
-				return NoContent();
+				return Ok(_response);
 			}
 			catch (Exception ex)
 			{

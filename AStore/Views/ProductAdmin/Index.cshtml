@@ -37,8 +37,13 @@
 											@(product.Status == 1 ? "checked" : "") />
 										</td>
 										<td>
-											<a href="@Url.Action("Edit", "ProductAdmin", new { id = product.Id })" class="btn btn-warning"><i class="far fa-edit"></i>Edit</a>
-											<a href="@Url.Action("Delete", "ProductAdmin", new { id = product.Id })" class="btn btn-danger delete-item"><i class="far fa-trash-alt"></i>Delete</a>
+
+											<a href="@Url.Action("Edit", "ProductAdmin", new { id = product.Id })" id="updateProduct" data-id="@product.Id" class="btn btn-warning">
+												<i class="far fa-edit"></i>Edit
+											</a>
+
+											<a href="@Url.Action("Delete","ProductAdmin", new{ id = product.Id})" id="deleteProduct" data-id="@product.Id" class="btn btn-danger delete-item">
+												<i class="far fa-trash-alt"></i>Delete</a>
 										</td>
 									</tr>
 								}
@@ -71,7 +76,30 @@
 					}
 				});
 			});
+
+
+			// $('body').on('click', '#updateProduct', function (event) {
+			// 	event.preventDefault();
+			// 	let id = $(this).data('id');
+			// 	$.ajax({
+			// 		url: '@Url.Action("Edit", "ProductAdmin")/' + id,
+			// 		method: 'POST',
+			// 		success: function (data) {
+			// 			toastr.success('Update Successful!');
+			// 		},
+			// 		error: function (xhr, status, error) {
+			// 			toastr.success('Update Failed!');
+			// 		}
+			// 	});
+			// });
+
+
 		});
+		// viết ajax cập nhập sản phẩm
+
+
+
+
 	</script>
 }
 

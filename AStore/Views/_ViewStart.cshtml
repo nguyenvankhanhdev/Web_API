@@ -1,8 +1,12 @@
 ﻿@{
-    Layout = "_FrontEndLayout";
-}
-@* @{
-    Layout = "_AdminLayout";
-}
- *@
+    var isAdmin = false;
 
+    // Logic để kiểm tra nếu là admin (có thể dựa trên đường dẫn, route data, hoặc các thông tin khác)
+    var routeData = Context.Request.Path.Value;
+    if (routeData != null && routeData.ToLower().Contains("/admin"))
+    {
+        isAdmin = true;
+    }
+
+    Layout = isAdmin ? "_AdminLayout" : "_FrontEndLayout";
+}
