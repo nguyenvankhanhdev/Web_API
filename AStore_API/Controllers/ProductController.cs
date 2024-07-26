@@ -212,6 +212,44 @@ namespace AStore_API.Controllers
         }
 
 
+		[HttpGet("{id:int}/category", Name ="ProductByCate")]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		[ProducesResponseType(StatusCodes.Status404NotFound)]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		public async Task<ActionResult<APIResponse>> GetProductByCategory(int id)
+		{
+			try
+			{
+				if (id == 0) 
+				{ 
+					_response.StatusCode = HttpStatusCode.BadRequest;
+					_response.IsSuccess = false;
+					return BadRequest(_response);
+					
+				}
+				var products = await _product.GetAllAsync(v => v.CategoryId == id, includeProperties: "Category");
+				if(products == null)
+                {
+                    _response.StatusCode = HttpStatusCode.NotFound;
+                    _response.IsSuccess = false;
+                    _response.ErrorMessages = new List<string> { "Product not found." };
+                    return NotFound(_response);
+                }
+				_response.Result = products;
+				_response.StatusCode = HttpStatusCode.OK;
+				_response.IsSuccess = true;
+				return Ok(_response);
+			}
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
+                _response.ErrorMessages = new List<string> { ex.Message };
+
+            }
+            return _response;
+        }
+
+
 
     }
 }

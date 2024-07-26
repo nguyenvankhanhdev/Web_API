@@ -73,7 +73,16 @@ namespace AStore_Web.Service
 				Data = product
 			});
 		}
-		
+	
+		public Task<T> GetProductByCategoryAsync<T>(int id)
+		{
+			return SendAsync<T>(new APIRequest
+			{
+				apiType = SD.APIType.GET,
+				Url = ApiBaseUrl + "/api/product/" + id + "/category"
+			});
+		}
 
-	}
+
+    }
 }

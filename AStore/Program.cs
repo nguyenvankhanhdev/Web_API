@@ -42,6 +42,7 @@ app.UseEndpoints(endpoints =>
 		name: "admin",
 		pattern: "admin/{controller=ProductAdmin}/{action=Index}/{id?}",
 		new { controller = "ProductAdmin" });
+	
 });
 
 app.Run();

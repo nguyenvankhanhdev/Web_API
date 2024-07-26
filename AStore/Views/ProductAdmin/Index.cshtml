@@ -31,7 +31,7 @@
 									<tr>
 										<td>@product.Id</td>
 										<td>@product.Name</td>
-										<td>@product.Price</td>
+										<td>@string.Format("{0:#,##0}", @product.Price).Replace(',', '.') đ</td>
 										<td>
 											<input type="checkbox" class="change-status" data-id="@product.Id"
 											@(product.Status == 1 ? "checked" : "") />
