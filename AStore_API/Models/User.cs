@@ -13,7 +13,6 @@ namespace AStore_API.Models
 		public string Password { get; set; }
 		public string Image { get; set; }
 		public string Role { get; set; }
-		public DateTime CreateDate { get; set; }
-		public DateTime UpdateDate { get; set; }
+		
 	}
 }

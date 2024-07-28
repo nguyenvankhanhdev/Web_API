@@ -1,0 +1,44 @@
+﻿@model AStore_Web.Models.DTO.RegisterRequestDTO
+
+
+<form action="Register" method="post">
+	<div class="container p-4 border">
+		<div class="row text-center">
+			<h1>Register</h1>
+		</div>
+		<div class="row text-center">
+			<div asp-validation-summary="All" class="text-danger"></div>
+		</div>
+
+		<div class="row">
+			<div class="col-6 offset-3 pb-2">
+				<div class="form-group">
+					<label for="username">Name</label>
+					<input type="text" class="form-control" id="username" asp-for="Name" placeholder="Enter name">
+				</div>
+			</div>
+			<div class="col-6 offset-3 pb-2">
+				<div class="form-group">
+					<label for="username">Username</label>
+					<input type="text" class="form-control" id="username" asp-for="Username" placeholder="Enter username">
+				</div>
+			</div>
+			<div class="col-6 offset-3 pb-2">
+				<div class="form-group">
+					<label for="password">Password</label>
+					<input type="password" class="form-control" id="password" asp-for="Password" placeholder="Password">
+				</div>
+			</div>
+			<div class="col-6 offset-3 pb-2">
+				<div class="form-group">
+					<label for="text">Image</label>
+					<input type="password" class="form-control" id="password" asp-for="Image" placeholder="Password">
+				</div>
+			</div>
+
+			<div class="col-6 offset-3 pb-2">
+				<button type="submit" class="btn form-control btn-primary">Register</button>
+			</div>
+		</div>
+	</div>
+</form>

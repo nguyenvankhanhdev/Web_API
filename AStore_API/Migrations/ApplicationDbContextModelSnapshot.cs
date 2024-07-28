@@ -66,11 +66,9 @@ namespace AStoreAPI.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Slug")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Status")
@@ -87,7 +85,7 @@ namespace AStoreAPI.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2024, 7, 18, 0, 54, 50, 859, DateTimeKind.Local).AddTicks(856),
+                            CreateDate = new DateTime(2024, 7, 26, 23, 4, 28, 625, DateTimeKind.Local).AddTicks(6204),
                             Name = "IPhone",
                             Slug = "iphone",
                             Status = 1,
@@ -96,7 +94,7 @@ namespace AStoreAPI.Migrations
                         new
                         {
                             Id = 2,
-                            CreateDate = new DateTime(2024, 7, 18, 0, 54, 50, 859, DateTimeKind.Local).AddTicks(869),
+                            CreateDate = new DateTime(2024, 7, 26, 23, 4, 28, 625, DateTimeKind.Local).AddTicks(6216),
                             Name = "iMac",
                             Slug = "imac",
                             Status = 1,
@@ -105,7 +103,7 @@ namespace AStoreAPI.Migrations
                         new
                         {
                             Id = 3,
-                            CreateDate = new DateTime(2024, 7, 18, 0, 54, 50, 859, DateTimeKind.Local).AddTicks(870),
+                            CreateDate = new DateTime(2024, 7, 26, 23, 4, 28, 625, DateTimeKind.Local).AddTicks(6217),
                             Name = "Macbook",
                             Slug = "macbook",
                             Status = 1,
@@ -114,7 +112,7 @@ namespace AStoreAPI.Migrations
                         new
                         {
                             Id = 4,
-                            CreateDate = new DateTime(2024, 7, 18, 0, 54, 50, 859, DateTimeKind.Local).AddTicks(872),
+                            CreateDate = new DateTime(2024, 7, 26, 23, 4, 28, 625, DateTimeKind.Local).AddTicks(6218),
                             Name = "Apple Watch",
                             Slug = "apple-watch",
                             Status = 1,
@@ -123,7 +121,7 @@ namespace AStoreAPI.Migrations
                         new
                         {
                             Id = 5,
-                            CreateDate = new DateTime(2024, 7, 18, 0, 54, 50, 859, DateTimeKind.Local).AddTicks(873),
+                            CreateDate = new DateTime(2024, 7, 26, 23, 4, 28, 625, DateTimeKind.Local).AddTicks(6219),
                             Name = "AirPods",
                             Slug = "airpods",
                             Status = 1,
@@ -140,7 +138,6 @@ namespace AStoreAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreateDate")
@@ -150,19 +147,15 @@ namespace AStoreAPI.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Payment")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Status")
@@ -237,15 +230,12 @@ namespace AStoreAPI.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Offer_price")
@@ -255,11 +245,9 @@ namespace AStoreAPI.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Product_type")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Slug")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Status")
@@ -287,7 +275,6 @@ namespace AStoreAPI.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Product_id")
@@ -311,30 +298,19 @@ namespace AStoreAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Role")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Username")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -351,14 +327,12 @@ namespace AStoreAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdateDate")

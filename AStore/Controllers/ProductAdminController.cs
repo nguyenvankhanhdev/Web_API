@@ -11,11 +11,13 @@ namespace AStore_Web.Controllers
 		private readonly IProductService _product;
 		private readonly ICategoryService _category;
 		private readonly IWebHostEnvironment _webHostEnvironment;
-		public ProductAdminController(IProductService product, ICategoryService category, IWebHostEnvironment webHost)
+		private readonly IProduct_imageService _product_ImageService;
+		public ProductAdminController(IProductService product, ICategoryService category, IWebHostEnvironment webHost, IProduct_imageService product_ImageService)
 		{
 			_category = category;
 			_product = product;
 			_webHostEnvironment = webHost;
+			_product_ImageService = product_ImageService;
 		}
 		public async Task<IActionResult> Index()
 		{
@@ -222,6 +224,21 @@ namespace AStore_Web.Controllers
 			}
 			ViewBag.Layout = "_AdminLayout";
 			return View(product);
+		}
+		public async Task<IActionResult> GetImageById(int id)
+		{
+			List<Product_image> listProduct_image = new();
+			var response = await _product_ImageService.GetImageByIdProduct<APIResponse>(id);
+			if (response != null && response.IsSuccess)
+			{
+				var productImage = JsonConvert.DeserializeObject<Product_image>(Convert.ToString(response.Result));
+				if (productImage != null)
+				{
+					listProduct_image.Add(productImage);
+				}
+			}
+			ViewBag.Layout = "_AdminLayout";
+			return View(listProduct_image);
 		}
 
 

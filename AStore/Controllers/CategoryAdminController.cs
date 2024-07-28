@@ -12,7 +12,7 @@ namespace AStore_Web.Controllers
 		{
 			_category = category;
 		}
-		public async Task< IActionResult> Index()
+		public async Task<IActionResult> Index()
 		{
 			List<Category> listCate = new();
 			var response = await _category.GetAllCategoriesAsync<APIResponse>();

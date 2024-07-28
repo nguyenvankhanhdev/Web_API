@@ -1,5 +1,6 @@
 using AStore_Web.Service;
 using AStore_Web.Service.IService;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,8 +13,31 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddHttpClient<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 
+builder.Services.AddHttpClient<IProduct_imageService, Product_imageService>();
+builder.Services.AddScoped<IProduct_imageService, Product_imageService>();
+
+builder.Services.AddHttpClient<IAuthService, AuthService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+
+
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+	.AddCookie(options =>
+	{
+		options.Cookie.HttpOnly = true;
+		options.ExpireTimeSpan = TimeSpan.FromMinutes(100);
+		options.LoginPath = "/Auth/Login";
+		options.AccessDeniedPath = "/Auth/AccessDenied";
+		options.SlidingExpiration = true;
+
+	});
+builder.Services.AddSession(options =>
+{
+	options.IdleTimeout = TimeSpan.FromMinutes(100); // Set the session timeout
+	options.Cookie.HttpOnly = true;
+	options.Cookie.IsEssential = true;
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -27,7 +51,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
+app.UseSession();
 app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
