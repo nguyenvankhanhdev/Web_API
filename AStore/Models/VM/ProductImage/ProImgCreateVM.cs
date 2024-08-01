@@ -1,15 +1,16 @@
-﻿namespace AStore_Web.Models.VM.ProductImage
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace AStore_Web.Models.VM.ProductImage
 {
 	public class ProImgCreateVM
 	{
-		ProImgCreateVM()
+		public ProImgCreateVM()
 		{
-			ProductImages = new List<Product_image>();
+			Pro = new Product_image();
+			ImageFile = new List<IFormFile>();
 		}
-		public Models.Product Product { get; set; }
-		public List<Product_image> ProductImages { get; set; }
-
-
-
+		public Product_image Pro { get; set; }
+		[NotMapped]
+		public List<IFormFile> ImageFile { get; set; }
 	}
 }

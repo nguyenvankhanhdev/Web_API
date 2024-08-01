@@ -1,5 +1,6 @@
 ﻿using AStore_Web.Models;
 using AStore_Web.Models.VM.Product;
+using AStore_Web.Models.VM.ProductImage;
 using AStore_Web.Service.IService;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -227,19 +228,37 @@ namespace AStore_Web.Controllers
 		}
 		public async Task<IActionResult> GetImageById(int id)
 		{
-			List<Product_image> listProduct_image = new();
+			var viewModel = new ProductImageViewModel
+			{
+				ProductId = id,
+				ProductImages = new List<Product_image>()
+			};
+
 			var response = await _product_ImageService.GetImageByIdProduct<APIResponse>(id);
 			if (response != null && response.IsSuccess)
 			{
-				var productImage = JsonConvert.DeserializeObject<Product_image>(Convert.ToString(response.Result));
-				if (productImage != null)
+				var responseData = Convert.ToString(response.Result);
+				if (responseData.TrimStart().StartsWith("["))
 				{
-					listProduct_image.Add(productImage);
+					// Response is an array
+					viewModel.ProductImages = JsonConvert.DeserializeObject<List<Product_image>>(responseData);
+				}
+				else
+				{
+					// Response is a single object
+					var productImage = JsonConvert.DeserializeObject<Product_image>(responseData);
+					if (productImage != null)
+					{
+						viewModel.ProductImages.Add(productImage);
+					}
 				}
 			}
+
 			ViewBag.Layout = "_AdminLayout";
-			return View(listProduct_image);
+			return View(viewModel);
 		}
+
+
 
 
 	}

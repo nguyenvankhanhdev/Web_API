@@ -40,16 +40,12 @@ namespace AStore_Web.Controllers
 				await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 				HttpContext.Session.SetString(SD.SessionToken, loginResponseDTO.Token);
 				return RedirectToAction("Index", "Product");
-
 			}
 			else
 			{
 				ModelState.AddModelError("CustomError", aPIResponse.ErrorMessages.FirstOrDefault());
 				return View(model);
 			}
-
-
-
 		}
 		[HttpGet]
 		public IActionResult Register()
